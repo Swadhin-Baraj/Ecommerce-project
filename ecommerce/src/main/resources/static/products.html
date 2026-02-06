@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce | Products</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-logo">🛍️ ShopHub</h1>
+            <div class="search-bar">
+                <div id="searchContainer" class="autocomplete">
+                    <input type="text" id="searchInput" placeholder="Search products..." autocomplete="off">
+                    <div id="suggestions" class="suggestions" role="listbox" aria-hidden="true"></div>
+                </div>
+                <button onclick="searchProducts()">Search</button>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="products.html" class="nav-link active">Products</a></li>
+                <li><a href="cart.html" class="nav-link">Cart <span id="cartCount" class="cart-count">0</span></a></li>
+                <li><a href="orders.html" class="nav-link" id="ordersLink" style="display: none;">Orders</a></li>
+                <li><a href="admin.html" class="nav-link" id="adminLink" style="display: none;">📊 Admin</a></li>
+                <li><a href="auth.html" class="nav-link" id="authLink">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Products</h1>
+            <p>Browse and manage our products</p>
+        </header>
+
+        <main style="display: block;">
+            <section id="recommendations" style="margin-bottom:20px;">
+                <h2>Recommended for you</h2>
+                <div id="recoList" class="products-grid">
+                    <p class="empty-state">Loading recommendations...</p>
+                </div>
+            </section>
+            <section class="form-section">
+                <h2>Add New Product</h2>
+                <form id="productForm">
+                    <div class="form-group">
+                        <label for="pname">Product Name:</label>
+                        <input type="text" id="pname" name="pname" required placeholder="Enter product name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea id="description" name="description" rows="3" required placeholder="Enter product description"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Price:</label>
+                        <input type="number" id="price" name="price" step="0.01" required placeholder="Enter price">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" required placeholder="Enter quantity">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category:</label>
+                        <input type="text" id="category" name="category" required placeholder="Enter category">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="imageUrl">Image URL:</label>
+                        <input type="url" id="imageUrl" name="imageUrl" placeholder="Enter image URL (optional)">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                </form>
+                <div id="productMessage" class="message"></div>
+            </section>
+
+            <section class="users-section">
+                <h2>Browse & Filter</h2>
+                <div class="filter-section">
+                    <div class="filter-group">
+                        <h4>🏷️ Categories</h4>
+                        <div id="categoryFilter" class="filter-options">
+                            <label><input type="checkbox" onchange="applyFilters()"> All Categories</label>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <h4>💰 Price Range</h4>
+                        <input type="range" id="priceRange" min="0" max="10000" value="10000" onchange="applyFilters()" style="width: 100%;">
+                        <p style="font-size: 0.9em; color: #666; margin-top: 5px;">Max Price: $<span id="priceValue">10000</span></p>
+                    </div>
+                    <button class="btn btn-secondary" onclick="resetFilters()">Reset Filters</button>
+                </div>
+
+                <h2 style="margin-top: 30px;">All Products</h2>
+                <button id="loadProductsBtn" class="btn btn-secondary">Load Products</button>
+                <div id="productsContainer" class="products-grid">
+                    <p class="empty-state">Click "Load Products" to display all products</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 E-Commerce Application. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="products.js"></script>
+    <script src="recommendations.js"></script>
+</body>
+</html>

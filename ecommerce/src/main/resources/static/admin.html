@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce | Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .admin-tab-button {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 5px 5px 0 0;
+            transition: all 0.3s;
+        }
+
+        .admin-tab-button.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card h3 {
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .stat-card .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .order-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .order-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .order-status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .order-status.completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .order-status.cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-logo">🛍️ E-Commerce Admin</h1>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="admin.html" class="nav-link active">Dashboard</a></li>
+                <li><a href="auth.html" class="nav-link" id="authLink">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Admin Dashboard</h1>
+            <p>Manage orders, products, and users</p>
+        </header>
+
+        <main style="display: block;">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <div class="stats-grid" id="statsGrid">
+                    <div class="stat-card">
+                        <h3>Total Orders</h3>
+                        <div class="stat-value" id="totalOrders">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Revenue</h3>
+                        <div class="stat-value" id="totalRevenue">$0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Products</h3>
+                        <div class="stat-value" id="totalProducts">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Users</h3>
+                        <div class="stat-value" id="totalUsers">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="admin-tabs">
+                <button class="admin-tab-button active" onclick="switchAdminTab('dashboard')">📊 Dashboard</button>
+                <button class="admin-tab-button" onclick="switchAdminTab('orders')">📦 Orders</button>
+                <button class="admin-tab-button" onclick="switchAdminTab('products')">🏷️ Products</button>
+                <button class="admin-tab-button" onclick="switchAdminTab('users')">👥 Users</button>
+            </div>
+
+            <!-- Orders Tab -->
+            <div id="orders" class="tab-content">
+                <section class="users-section">
+                    <h2>Manage Orders</h2>
+                    <button id="loadAllOrdersBtn" class="btn btn-secondary">Load All Orders</button>
+                    <div id="allOrdersContainer" class="orders-container">
+                        <p class="empty-state">Click "Load All Orders" to view</p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Products Tab -->
+            <div id="products" class="tab-content">
+                <section class="users-section">
+                    <h2>Manage Products</h2>
+                    <button id="loadAllProductsBtn" class="btn btn-secondary">Load All Products</button>
+                    <div id="allProductsContainer" class="products-grid">
+                        <p class="empty-state">Click "Load All Products" to view</p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Users Tab -->
+            <div id="users" class="tab-content">
+                <section class="users-section">
+                    <h2>Manage Users</h2>
+                    <button id="loadAllUsersBtn" class="btn btn-secondary">Load All Users</button>
+                    <div id="allUsersContainer" class="users-container">
+                        <p class="empty-state">Click "Load All Users" to view</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 E-Commerce Application. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

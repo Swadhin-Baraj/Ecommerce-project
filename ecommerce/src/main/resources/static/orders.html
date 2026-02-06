@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce | My Orders</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-logo">🛍️ ShopHub</h1>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="products.html" class="nav-link">Products</a></li>
+                <li><a href="cart.html" class="nav-link">Cart <span id="cartCount" class="cart-count">0</span></a></li>
+                <li><a href="orders.html" class="nav-link active">My Orders</a></li>
+                <li><a href="admin.html" class="nav-link" id="adminLink" style="display:none;">Admin</a></li>
+                <li><a href="auth.html" class="nav-link" id="authLink">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>My Orders</h1>
+            <p>Track your orders and view order history</p>
+        </header>
+
+        <main style="display: block;">
+            <section class="users-section">
+                <div style="margin-bottom: 20px;">
+                    <h2>Checkout</h2>
+                    <form id="checkoutForm">
+                        <div class="form-group">
+                            <label for="shippingAddress">Shipping Address:</label>
+                            <textarea id="shippingAddress" name="shippingAddress" rows="3" required placeholder="Enter your shipping address"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Place Order</button>
+                    </form>
+                    <div id="checkoutMessage" class="message"></div>
+                </div>
+
+                <hr style="margin: 30px 0;">
+
+                <div>
+                    <h2>Order History</h2>
+                    <button id="loadOrdersBtn" class="btn btn-secondary">Load My Orders</button>
+                    <div id="ordersContainer" class="orders-container">
+                        <p class="empty-state">Click "Load My Orders" to view your order history</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 E-Commerce Application. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="orders.js"></script>
+</body>
+</html>

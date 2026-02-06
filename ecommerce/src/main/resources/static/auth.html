@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce | Login & Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-logo">🛍️ ShopHub</h1>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="products.html" class="nav-link">Products</a></li>
+                <li><a href="cart.html" class="nav-link">Cart <span id="cartCount" class="cart-count">0</span></a></li>
+                <li><a href="auth.html" class="nav-link active" id="authLink">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Authentication</h1>
+            <p>Login or Register your account</p>
+        </header>
+
+        <main style="display: block;">
+            <section class="auth-section">
+                <div class="auth-container">
+                
+                    <!-- Login Tab -->
+                    <div class="auth-tab" id="loginTab" style="display: block;">
+                        <h2>Login</h2>
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label for="loginEmail">Email:</label>
+                                <input type="email" id="loginEmail" required placeholder="Enter your email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="loginPassword">Password:</label>
+                                <input type="password" id="loginPassword" required placeholder="Enter your password">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                        <p style="margin-top: 15px; text-align: center;">Don't have an account? <a href="#" onclick="switchTab('register')">Register here</a></p>
+                        <div id="loginMessage" class="message"></div>
+                    </div>
+
+                    <!-- Register Tab -->
+                    <div class="auth-tab" id="registerTab" style="display: none;">
+                        <h2>Register</h2>
+                        <form id="registerForm">
+                            <div class="form-group">
+                                <label for="regName">Full Name:</label>
+                                <input type="text" id="regName" required placeholder="Enter your full name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="regEmail">Email:</label>
+                                <input type="email" id="regEmail" required placeholder="Enter your email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="regPassword">Password:</label>
+                                <input type="password" id="regPassword" required placeholder="Enter your password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="regPassword2">Confirm Password:</label>
+                                <input type="password" id="regPassword2" required placeholder="Confirm your password">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </form>
+                        <p style="margin-top: 15px; text-align: center;">Already have an account? <a href="#" onclick="switchTab('login')">Login here</a></p>
+                        <div id="registerMessage" class="message"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 E-Commerce Application. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>

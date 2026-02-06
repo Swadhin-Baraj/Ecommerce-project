@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-container">
+        <h1 class="nav-logo">🛍️ ShopHub</h1>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="products.html" class="nav-link">Products</a></li>
+            <li><a href="cart.html" class="nav-link">Cart <span id="cartCount" class="cart-count">0</span></a></li>
+            <li><a href="wishlist.html" class="nav-link" id="wishlistLink" style="display:none;">❤️ Wishlist</a></li>
+            <li><a href="auth.html" class="nav-link" id="authLink">Login</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <header>
+        <h1>Product Details</h1>
+    </header>
+
+    <main class="product-detail">
+        <div>
+            <img id="productImage" class="product-detail-image" src="https://via.placeholder.com/400" alt="Product">
+        </div>
+        <div class="product-detail-info">
+            <h1 id="productName">Product Name</h1>
+            <div class="product-detail-rating"><span id="avgRating">0.0</span> ★ (<span id="reviewCount">0</span> reviews)</div>
+            <div class="product-detail-price" id="productPrice">$0.00</div>
+            <div class="product-detail-description" id="productDescription">Description</div>
+
+            <div style="margin-top:20px; display:flex; gap:10px;">
+                <input id="qtyDetail" type="number" value="1" min="1" style="width:80px;padding:8px;border:1px solid #d0d0d0;border-radius:6px;">
+                <button class="btn btn-primary" onclick="addToCartFromDetail()">Add to Cart</button>
+                <button class="btn wishlist-btn" onclick="toggleWishlistDetail()">❤️</button>
+            </div>
+
+            <hr style="margin:20px 0">
+
+            <section>
+                <h3>Reviews</h3>
+                <div id="reviewsList">
+                    <p class="empty-state">No reviews yet</p>
+                </div>
+
+                <div style="margin-top:15px;">
+                    <h4>Write a review</h4>
+                    <label for="ratingSelect">Rating:</label>
+                    <select id="ratingSelect" style="padding:8px;border:1px solid #d0d0d0;border-radius:6px;">
+                        <option value="5">5 - Excellent</option>
+                        <option value="4">4 - Good</option>
+                        <option value="3">3 - Average</option>
+                        <option value="2">2 - Poor</option>
+                        <option value="1">1 - Terrible</option>
+                    </select>
+                    <div style="margin-top:10px;"><textarea id="reviewComment" rows="3" placeholder="Share your experience" style="width:100%;padding:10px;border:1px solid #d0d0d0;border-radius:6px;"></textarea></div>
+                    <div style="margin-top:10px;"><button class="btn btn-secondary" onclick="submitReview()">Submit Review</button></div>
+                </div>
+            </section>
+
+            <section id="recommendations" style="margin-top:20px;">
+                <h3>Recommended for you</h3>
+                <div id="recoList" class="products-grid">
+                    <p class="empty-state">Loading recommendations...</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ShopHub</p>
+    </footer>
+</div>
+
+<script src="product-detail.js"></script>
+<script src="recommendations.js"></script>
+</body>
+</html>

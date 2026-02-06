@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce | Checkout</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-logo">🛍️ ShopHub</h1>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="products.html" class="nav-link">Products</a></li>
+                <li><a href="cart.html" class="nav-link">Cart <span id="cartCount" class="cart-count">0</span></a></li>
+                <li><a href="orders.html" class="nav-link" id="ordersLink" style="display: none;">Orders</a></li>
+                <li><a href="checkout.html" class="nav-link active">Checkout</a></li>
+                <li><a href="auth.html" class="nav-link" id="authLink">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Checkout</h1>
+            <p>Complete your purchase securely</p>
+        </header>
+
+        <main style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px;">
+            <section class="form-section">
+                <h2>Shipping Address</h2>
+                <form id="addressForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name:</label>
+                        <input type="text" id="fullName" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required placeholder="Enter your email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="tel" id="phone" required placeholder="Enter your phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" id="address" required placeholder="Enter your street address">
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label for="city">City:</label>
+                            <input type="text" id="city" required placeholder="City">
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State:</label>
+                            <input type="text" id="state" required placeholder="State">
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label for="zipcode">ZIP Code:</label>
+                            <input type="text" id="zipcode" required placeholder="ZIP Code">
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country:</label>
+                            <input type="text" id="country" required placeholder="Country" value="USA">
+                        </div>
+                    </div>
+                </form>
+
+                <h2 style="margin-top: 30px;">Payment Information</h2>
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label for="cardName">Cardholder Name:</label>
+                        <input type="text" id="cardName" required placeholder="Name on card">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number:</label>
+                        <input type="text" id="cardNumber" required placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label for="expiry">Expiry Date:</label>
+                            <input type="text" id="expiry" required placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV:</label>
+                            <input type="text" id="cvv" required placeholder="123" maxlength="4">
+                        </div>
+                    </div>
+                </form>
+
+                <button type="button" class="btn btn-primary" style="margin-top: 30px;" onclick="processPayment()">Complete Purchase</button>
+                <div id="paymentMessage" class="message" style="margin-top: 15px;"></div>
+            </section>
+
+            <section style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #e0e0e0; height: fit-content;">
+                <h3>Order Summary</h3>
+
+                <div id="orderItems" style="border-bottom: 1px solid #e0e0e0; padding-bottom: 15px; margin-bottom: 15px;">
+                    <p class="loading">Loading cart...</p>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; color: #666;">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">$0.00</span>
+                </div>
+
+                <div style="background: white; padding: 12px; border-radius: 6px; margin-bottom: 15px;">
+                    <label for="couponCode" style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Apply Coupon:</label>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" id="couponCode" placeholder="Enter coupon code" style="flex: 1; padding: 8px; border: 1px solid #d0d0d0; border-radius: 4px;">
+                        <button type="button" class="btn btn-secondary" onclick="applyCoupon()" style="padding: 8px 16px; margin: 0;">Apply</button>
+                    </div>
+                    <div id="couponMessage" style="font-size: 0.85em; margin-top: 6px;"></div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; color: #666; font-size: 0.95em;">
+                    <span>Discount:</span>
+                    <span id="discount" style="color: #00b050; font-weight: 600;">-$0.00</span>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; padding: 12px 0; border-top: 2px solid #e0e0e0; border-bottom: 2px solid #e0e0e0; margin-bottom: 15px;">
+                    <span style="font-weight: 700; font-size: 1.1em;">Total:</span>
+                    <span id="total" style="font-weight: 700; font-size: 1.1em; color: #1e3c72;">$0.00</span>
+                </div>
+
+                <div style="background: #fff3cd; border: 1px solid #ffc107; padding: 12px; border-radius: 4px; font-size: 0.9em;">
+                    <strong>Sample Coupons:</strong>
+                    <div style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 8px;">
+                        <button type="button" class="btn btn-sm" onclick="fillCoupon('SAVE10')" style="padding: 4px 10px; font-size: 0.8em;">SAVE10 (10%)</button>
+                        <button type="button" class="btn btn-sm" onclick="fillCoupon('SAVE20')" style="padding: 4px 10px; font-size: 0.8em;">SAVE20 (20%)</button>
+                        <button type="button" class="btn btn-sm" onclick="fillCoupon('FLAT5')" style="padding: 4px 10px; font-size: 0.8em;">FLAT5 ($5 off)</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 E-Commerce Application. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="checkout.js"></script>
+</body>
+</html>

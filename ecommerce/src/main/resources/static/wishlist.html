@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce | Wishlist</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-logo">🛍️ ShopHub</h1>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="products.html" class="nav-link">Products</a></li>
+                <li><a href="cart.html" class="nav-link">Cart <span id="cartCount" class="cart-count">0</span></a></li>
+                <li><a href="wishlist.html" class="nav-link active">❤️ Wishlist</a></li>
+                <li><a href="orders.html" class="nav-link" id="ordersLink" style="display: none;">Orders</a></li>
+                <li><a href="admin.html" class="nav-link" id="adminLink" style="display: none;">📊 Admin</a></li>
+                <li><a href="auth.html" class="nav-link" id="authLink">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>❤️ My Wishlist</h1>
+            <p>Your saved items for later</p>
+        </header>
+
+        <main style="display: block;">
+            <section class="users-section" style="grid-column: 1/-1;">
+                <button id="loadWishlistBtn" class="btn btn-secondary">Load Wishlist</button>
+                <div id="wishlistContainer" class="products-grid">
+                    <p class="empty-state">Click "Load Wishlist" to view your saved items</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 E-Commerce Application. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="wishlist.js"></script>
+</body>
+</html>
